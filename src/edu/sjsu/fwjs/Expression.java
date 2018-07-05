@@ -173,8 +173,7 @@ class FunctionDeclExpr implements Expression {
         this.body = body;
     }
     public Value evaluate(Environment env) {
-        // YOUR CODE HERE
-        return null;
+        return new ClosureVal(params, body, env);
     }
 }
 
@@ -189,8 +188,11 @@ class FunctionAppExpr implements Expression {
         this.args = args;
     }
     public Value evaluate(Environment env) {
-        // YOUR CODE HERE
-        return null;
+        ClosureVal closure = (ClosureVal) f.evaluate(env);
+        ArrayList<Value> argVals = new ArrayList<Value>();
+        for(int i = 0; i < args.size(); i++)
+            argVals.add(args.get(i).evaluate(env));
+        return closure.apply(argVals);
     }
 }
 
