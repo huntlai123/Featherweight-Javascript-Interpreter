@@ -25,14 +25,22 @@ public class Environment {
      * Otherwise, search for the variable in the outer scope.
      * If we are at the outermost scope (AKA the global scope)
      * null is returned (similar to how JS returns undefined.
-     */
+     */ 
     public Value resolveVar(String varName) {
-        Value val = env.get(varName);
-        if(val == null && outerEnv != null)
-            return outerEnv.resolveVar(varName);
+    	Environment current = this;
+        Value val = current.env.get(varName);
+        
+        //Nick: multiple outer environments!!  Search them all, like peeling an onion!
+        while (current.env.get(varName) == null && current.outerEnv != null) {
+        	current = current.outerEnv;
+        	val = current.env.get(varName);
+        }
+        
+        if (val == null)
+        	return new NullVal();
         else
-            return val;
-    }
+        	return val;
+    } 
 
     /**
      * Used for updating existing variables.

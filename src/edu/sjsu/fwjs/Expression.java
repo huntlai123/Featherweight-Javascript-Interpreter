@@ -70,10 +70,23 @@ class BinOpExpr implements Expression {
         this.e2 = e2;
     }
 
-    @SuppressWarnings("incomplete-switch")
+    //@SuppressWarnings("incomplete-switch")
     public Value evaluate(Environment env) {
-        // YOUR CODE HERE
-        return null;
+        int val1 = ((IntVal)e1.evaluate(env)).toInt();
+        int val2 = ((IntVal)e2.evaluate(env)).toInt();
+        switch (op) {
+        case ADD:		return new IntVal(val1 + val2);
+        case SUBTRACT:	return new IntVal(val1 - val2);
+        case MULTIPLY:	return new IntVal(val1 * val2);
+        case DIVIDE:	return new IntVal(val1 / val2);
+        case MOD:		return new IntVal(val1 % val2);
+        case GT:		return new BoolVal(val1 > val2);
+        case GE:		return new BoolVal(val1 >= val2);
+        case LT:		return new BoolVal(val1 < val2);
+        case LE:		return new BoolVal(val1 <= val2);
+        case EQ:		return new BoolVal(val1 == val2);
+        default:		return new NullVal(); //not supported
+        }
     }
 }
 
@@ -91,8 +104,12 @@ class IfExpr implements Expression {
         this.els = els;
     }
     public Value evaluate(Environment env) {
-        // YOUR CODE HERE
-        return null;
+       boolean c = ((BoolVal)cond.evaluate(env)).toBoolean();
+       if (c) {
+    	   return thn.evaluate(env);
+       } else {
+    	   return els.evaluate(env);
+       }
     }
 }
 
@@ -107,8 +124,10 @@ class WhileExpr implements Expression {
         this.body = body;
     }
     public Value evaluate(Environment env) {
-        // YOUR CODE HERE
-        return null;
+    	Value returnMe = new NullVal();
+        while (((BoolVal)cond.evaluate(env)).toBoolean())
+        	returnMe = body.evaluate(env);
+        return returnMe;
     }
 }
 
@@ -123,8 +142,8 @@ class SeqExpr implements Expression {
         this.e2 = e2;
     }
     public Value evaluate(Environment env) {
-        // YOUR CODE HERE
-        return null;
+        e1.evaluate(env);
+        return e2.evaluate(env);
     }
 }
 
@@ -139,8 +158,8 @@ class VarDeclExpr implements Expression {
         this.exp = exp;
     }
     public Value evaluate(Environment env) {
-        // YOUR CODE HERE
-        return null;
+        env.createVar(varName, exp.evaluate(env));
+        return env.resolveVar(varName);
     }
 }
 
@@ -157,8 +176,8 @@ class AssignExpr implements Expression {
         this.e = e;
     }
     public Value evaluate(Environment env) {
-        // YOUR CODE HERE
-        return null;
+        env.updateVar(varName, e.evaluate(env));
+        return env.resolveVar(varName);
     }
 }
 

@@ -94,7 +94,7 @@ class ClosureVal implements Value {
         Environment newEnv = new Environment(outerEnv);
         for(int i = 0; i < argVals.size(); i++)
             newEnv.updateVar(params.get(i), argVals.get(i));
-        outerEnv = newEnv;
-        return this;
+        //outerEnv = newEnv; //Nick: should be keeping the outerEnv i think??
+        return body.evaluate(newEnv); //Nick: return the evaluated body with reference to the new environment, not this
     }
 }
