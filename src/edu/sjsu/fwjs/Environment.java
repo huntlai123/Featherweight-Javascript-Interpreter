@@ -49,15 +49,29 @@ public class Environment {
      */
     public void updateVar(String key, Value v) {
         Value oldVal = resolveVar(key);
+        Environment next = outerEnv;
         if(oldVal == null)
         {
+            /*
             Environment next = outerEnv;
             while(next != null)
                 next = next.outerEnv;
             env.put(key, v);
+            */
+            
+            while(next.outerEnv != null)
+                next = next.outerEnv;
+            next.env.put(key, v);
+            
         }
         else
-            env.put(key, v);
+        {
+            //env.put(key, v);
+            
+            while (next.env.get(key) == null && next.outerEnv != null)
+                next = next.outerEnv;
+            next.env.put(key, v);
+        } 
     }
 
     /**

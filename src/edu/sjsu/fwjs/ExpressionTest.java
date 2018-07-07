@@ -195,6 +195,7 @@ public class ExpressionTest {
                 new FunctionAppExpr(f, new ArrayList<Expression>())),
                 new VarExpr("x"));
         Value v = seq.evaluate(env);
+        System.out.println(v.toString());
         assertEquals(new IntVal(42), v);
     }
     
