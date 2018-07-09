@@ -68,9 +68,14 @@ public class Environment {
         {
             //env.put(key, v);
             
-            while (next.env.get(key) == null && next.outerEnv != null)
-                next = next.outerEnv;
-            next.env.put(key, v);
+            if(next != null)
+            {
+                while (next.env.get(key) == null && next.outerEnv != null)
+                    next = next.outerEnv;
+                next.env.put(key, v);
+            }
+            else
+                env.put(key,  v);
         } 
     }
 
