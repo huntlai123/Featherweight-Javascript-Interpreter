@@ -11,4 +11,3 @@ print(ctr()); // prints 1
 print(ctr()); // prints 2
 print(ctr()); // prints 3
 print(ctr()); // prints 4
-
