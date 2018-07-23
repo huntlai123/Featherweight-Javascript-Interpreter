@@ -15,6 +15,7 @@ PRINT	  : 'print' ;
 INT       : [1-9][0-9]* | '0' ;
 BOOL	  : 'true' | 'false' ;
 NULL	  : 'null';
+ID		  : [a-zA-Z_][a-zA-Z0-9_]* ;
 
 // Symbols
 ADD		  : '+' ;
@@ -27,10 +28,8 @@ LESSTHAN  : '<' ;
 GRTREQAL  : '>=' ;
 LESSEQAL  : '<=' ;
 EQUAL	  : '==' ;
+ASSIGN	  : '=' ;
 SEPARATOR : ';' ;
-
-// Identifiers ???????????????
-VARIABLE  : [a-zA-Z_][a-zA-Z0-9_]* ;
 
 // Whitespace and comments
 NEWLINE   : '\r'? '\n' -> skip ;
