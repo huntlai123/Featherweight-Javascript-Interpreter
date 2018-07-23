@@ -55,7 +55,7 @@ expr: expr op=( MUL | DIV | MODULO ) expr               # MulDivMod
 	| expr op=( GRTRTHAN | LESSTHAN | GRTREQAL | LESSEQAL | EQUAL ) expr	# Compare
 	| FUNCTION '(' (ID (',' ID)* )? ')' block			# FuncDecl
 	| expr '(' (expr (',' expr)* )? ')'					# FuncAppl
-	| VAR ID '=' 	expr 								# VarDecl
+	| VAR ID '=' expr 									# VarDecl
 	| ID 												# VarRef
 	| ID '=' expr	 									# Assign
     | INT                                               # int
