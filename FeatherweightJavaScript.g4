@@ -45,22 +45,22 @@ prog: stat+ ;
 stat: expr SEPARATOR                                    # bareExpr
     | IF '(' expr ')' block ELSE block                  # ifThenElse
     | IF '(' expr ')' block                             # ifThen
-    | WHILE '(' expr ')' block 							# while
-    | PRINT '(' expr ')' SEPARATOR						# print
+    | WHILE '(' expr ')' block 	                        # while
+    | PRINT '(' expr ')' SEPARATOR                      # print
     | SEPARATOR											# empty
     ;
 
 expr: expr op=( MUL | DIV | MODULO ) expr               # MulDivMod
-	| expr op=( ADD | SUB ) expr                 		# AddSub
-	| expr op=( GRTRTHAN | LESSTHAN | GRTREQAL | LESSEQAL | EQUAL ) expr	# Compare
-	| FUNCTION '(' (ID (',' ID)* )? ')' block			# FuncDecl
-	| expr '(' (expr (',' expr)* )? ')'					# FuncAppl
-	| VAR ID '=' expr 									# VarDecl
-	| ID 												# VarRef
-	| ID '=' expr	 									# Assign
+    | expr op=( ADD | SUB ) expr                        # AddSub
+    | expr op=( GRTRTHAN | LESSTHAN | GRTREQAL | LESSEQAL | EQUAL ) expr    # Compare
+    | FUNCTION '(' (ID (',' ID)* )? ')' block           # FuncDecl
+    | expr '(' (expr (',' expr)* )? ')'	                # FuncAppl
+    | VAR ID '=' expr                                   # VarDecl
+    | ID                                                # VarRef
+    | ID '=' expr                                       # Assign
     | INT                                               # int
-    | BOOL 												# bool
-    | NULL 												# null
+    | BOOL                                              # bool
+    | NULL                                              # null
     | '(' expr ')'                                      # parens
     ;
 
