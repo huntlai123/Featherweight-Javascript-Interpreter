@@ -32,7 +32,7 @@ SEPARATOR : ';' ;
 
 // Whitespace and comments
 NEWLINE   : '\r'? '\n' -> skip ;
-BLOCK_COMMENT : '/*' ~'*/' -> skip ;
+BLOCK_COMMENT : '/*' ~ '*/' -> skip ;
 LINE_COMMENT  : '//' ~[\n\r]* -> skip ;
 WS            : [ \t]+ -> skip ; // ignore whitespace
 
