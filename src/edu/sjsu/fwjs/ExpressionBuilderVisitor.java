@@ -75,4 +75,61 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
     public Expression visitSimpBlock(FeatherweightJavaScriptParser.SimpBlockContext ctx) {
         return visit(ctx.stat());
     }
+    
+    public Expression visitBool(FeatherweightJavaScriptParser.BoolContext ctx)
+    {
+        return visit(ctx.stat());
+    }
+    
+    public Expression visitWhile(FeatherweightJavaScriptParser.WhileContext ctx)
+    {
+        Expression cond = visit(ctx.expr());
+        Expression block = visit(ctx.block(0));
+        return new WhileExpr(cond, block);
+    }
+    
+    public Expression visitPrint(FeatherweightJavaScriptParser.PrintContext ctx)
+    {
+        return new PrintExpr(ctx.expr());
+    }
+    
+    public Expression visitEmpty(FeatherweightJavaScriptParser.EmptyContext ctx)
+    {
+        
+    }
+    
+    public Expression visitMulDivMod(FeatherweightJavaScriptParser.MulDivModContext ctx)
+    {
+        Op token = ctx.op;
+        Expression expr1 = ctx.expr(1);
+        Expression expr2 = ctx.expr(2);
+        return new BinOpExpr(token, expr1, expr2);
+    }
+    
+    public Expression AddSub(FeatherweightJavaScriptParser.AddSubContext ctx)
+    {
+        Op token = ctx.op;
+        Expression expr1 = ctx.expr(1);
+        Expression expr2 = ctx.expr(2);
+        return new BinOpExpr(token, expr1, expr2);
+    }
+    
+    public Expression FuncDecl(FeatherweightJavaScriptParser.FuncDecl ctx)
+    {
+        List<String> params = ctx.ID();
+        Expression body = ctx.body();
+        return new FunctionDeclExpr(params, body);
+    }
+    
+    public Expression FuncAppl(FeatherweightJavaScriptParser.FuncApplContext ctx)
+    {
+        
+    }
+    
+    public Expression VarDecl(FeatherweightJavaScriptParser.VarDeclContext ctx)
+    {
+        String name = ctx.VAR();
+        Expression expr = ctx.expr();
+        return new VarDeclExpr(name, expr);
+    }
 }
