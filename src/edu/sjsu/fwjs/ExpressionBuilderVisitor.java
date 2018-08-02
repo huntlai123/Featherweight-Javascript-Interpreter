@@ -78,7 +78,8 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
     
     public Expression visitBool(FeatherweightJavaScriptParser.BoolContext ctx)
     {
-        return visit(ctx.stat());
+		boolean val = Boolean.valueOf(ctx.BOOL().getText()); //Nick: Re-writing with same structure as visitInt
+        return new ValueExpr(new BoolVal(val));
     }
     
     public Expression visitWhile(FeatherweightJavaScriptParser.WhileContext ctx)
@@ -90,46 +91,46 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
     
     public Expression visitPrint(FeatherweightJavaScriptParser.PrintContext ctx)
     {
-        return new PrintExpr(ctx.expr());
+        return new PrintExpr(visit(ctx.expr())); //Nick: Adding visit()
     }
     
     public Expression visitEmpty(FeatherweightJavaScriptParser.EmptyContext ctx)
     {
-        
+        //do nothing?
     }
     
     public Expression visitMulDivMod(FeatherweightJavaScriptParser.MulDivModContext ctx)
     {
-        Op token = ctx.op;
-        Expression expr1 = ctx.expr(1);
-        Expression expr2 = ctx.expr(2);
+        Op token = ctx.op; //Nick: this doesn't get enum but needs one for BinOpExpr?
+        Expression expr1 = visit(ctx.expr(0)); //Nick: Adding visit(), fixing index
+        Expression expr2 = visit(ctx.expr(1)); //Nick: Adding visit(), fixing index
         return new BinOpExpr(token, expr1, expr2);
     }
     
-    public Expression AddSub(FeatherweightJavaScriptParser.AddSubContext ctx)
+    public Expression visitAddSub(FeatherweightJavaScriptParser.AddSubContext ctx) //Nick: renamed method
     {
-        Op token = ctx.op;
-        Expression expr1 = ctx.expr(1);
-        Expression expr2 = ctx.expr(2);
+        Op token = ctx.op; //Nick: this doesn't get enum but needs one for BinOpExpr?
+        Expression expr1 = visit(ctx.expr(0)); //Nick: Adding visit(), fixing index
+        Expression expr2 = visit(ctx.expr(1)); //Nick: Adding visit(), fixing index
         return new BinOpExpr(token, expr1, expr2);
     }
     
-    public Expression FuncDecl(FeatherweightJavaScriptParser.FuncDecl ctx)
+    public Expression visitFuncDecl(FeatherweightJavaScriptParser.FuncDecl ctx) //Nick: renamed method
     {
         List<String> params = ctx.ID();
-        Expression body = ctx.body();
+        Expression body = visit(ctx.body()); //Nick: Adding visit()
         return new FunctionDeclExpr(params, body);
     }
     
-    public Expression FuncAppl(FeatherweightJavaScriptParser.FuncApplContext ctx)
+    public Expression visitFuncAppl(FeatherweightJavaScriptParser.FuncApplContext ctx) //Nick: renamed method
     {
         
     }
     
-    public Expression VarDecl(FeatherweightJavaScriptParser.VarDeclContext ctx)
+    public Expression visitVarDecl(FeatherweightJavaScriptParser.VarDeclContext ctx) //Nick: renamed method
     {
         String name = ctx.VAR();
-        Expression expr = ctx.expr();
+        Expression expr = visit(ctx.expr()); //Nick: Adding visit()
         return new VarDeclExpr(name, expr);
     }
 }
