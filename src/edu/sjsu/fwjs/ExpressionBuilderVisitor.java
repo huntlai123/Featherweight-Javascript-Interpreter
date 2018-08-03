@@ -81,6 +81,10 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
 		boolean val = Boolean.valueOf(ctx.BOOL().getText()); //Nick: Re-writing with same structure as visitInt
         return new ValueExpr(new BoolVal(val));
     }
+	
+	public Expression visitNull(FeatherweightJavaScriptParser.NullContext ctx) {
+		return new ValueExpr(new NullVal());
+	}
     
     public Expression visitWhile(FeatherweightJavaScriptParser.WhileContext ctx)
     {
@@ -93,12 +97,7 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
     {
         return new PrintExpr(visit(ctx.expr())); //Nick: Adding visit()
     }
-    
-    public Expression visitEmpty(FeatherweightJavaScriptParser.EmptyContext ctx)
-    {
-        //do nothing?
-    }
-    
+	
     public Expression visitMulDivMod(FeatherweightJavaScriptParser.MulDivModContext ctx)
     {
         Op token = ctx.op; //Nick: this doesn't get enum but needs one for BinOpExpr?
@@ -114,6 +113,14 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
         Expression expr2 = visit(ctx.expr(1)); //Nick: Adding visit(), fixing index
         return new BinOpExpr(token, expr1, expr2);
     }
+	
+	public Expression visitCompare(FeatherweightJavaScriptParser.CompareContext ctx)
+	{
+		Op token = ctx.op;
+        Expression expr1 = visit(ctx.expr(0));
+        Expression expr2 = visit(ctx.expr(1));
+		return new BinOpExpr(op, expr1, expr2);
+	}
     
     public Expression visitFuncDecl(FeatherweightJavaScriptParser.FuncDecl ctx) //Nick: renamed method
     {
@@ -124,7 +131,11 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
     
     public Expression visitFuncAppl(FeatherweightJavaScriptParser.FuncApplContext ctx) //Nick: renamed method
     {
-        
+        Expression expr = visit(ctx.expr());
+		List<Expression> args = new ArrayList<>();
+		for (ExprContext ec : ctx.args().expr())
+			args.add(visit(ec));
+		return new FunctionAppExpr(expr, args);
     }
     
     public Expression visitVarDecl(FeatherweightJavaScriptParser.VarDeclContext ctx) //Nick: renamed method
@@ -133,4 +144,14 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
         Expression expr = visit(ctx.expr()); //Nick: Adding visit()
         return new VarDeclExpr(name, expr);
     }
+	
+	public Expression visitVarRef(FeatherweightJavaScriptParser.VarRefContext ctx) {
+		return new VarExpr(ctx.ID());
+	}
+	
+	public Expression visitAssign(FeatherweightJavaScriptParser.AssignContext ctx) {
+		Expression expr = visit(ctx.expr());
+		String var = ctx.ID();
+		return new AssignExpr(var, expr);
+	}
 }
