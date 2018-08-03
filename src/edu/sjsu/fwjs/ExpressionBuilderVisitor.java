@@ -1,10 +1,10 @@
 package edu.sjsu.fwjs;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-import edu.sjsu.fwjs.parser.FeatherweightJavaScriptBaseVisitor;
-import edu.sjsu.fwjs.parser.FeatherweightJavaScriptParser;
+import edu.sjsu.fwjs.parser.*;
+
+import org.antlr.v4.runtime.tree.*;
 
 public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor<Expression>{
     @Override
