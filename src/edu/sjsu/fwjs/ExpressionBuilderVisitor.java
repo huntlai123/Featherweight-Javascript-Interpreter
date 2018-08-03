@@ -1,10 +1,10 @@
 package edu.sjsu.fwjs;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import edu.sjsu.fwjs.parser.*;
-
-import org.antlr.v4.runtime.tree.*;
+import edu.sjsu.fwjs.parser.FeatherweightJavaScriptBaseVisitor;
+import edu.sjsu.fwjs.parser.FeatherweightJavaScriptParser;
 
 public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor<Expression>{
     @Override
@@ -100,7 +100,7 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
 	
     public Expression visitMulDivMod(FeatherweightJavaScriptParser.MulDivModContext ctx)
     {
-        Op token = ctx.op; //Nick: this doesn't get enum but needs one for BinOpExpr?
+        Token token = ctx.op; //Nick: this doesn't get enum but needs one for BinOpExpr?
         Expression expr1 = visit(ctx.expr(0)); //Nick: Adding visit(), fixing index
         Expression expr2 = visit(ctx.expr(1)); //Nick: Adding visit(), fixing index
         return new BinOpExpr(token, expr1, expr2);
