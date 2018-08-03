@@ -3,8 +3,9 @@ package edu.sjsu.fwjs;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.sjsu.fwjs.parser.FeatherweightJavaScriptBaseVisitor;
 import edu.sjsu.fwjs.parser.FeatherweightJavaScriptParser;
+import edu.sjsu.fwjs.parser.FeatherweightJavaScriptParser.ExprContext;
+import edu.sjsu.fwjs.parser.FeatherweightJavaScriptBaseVisitor;
 
 public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor<Expression>{
     @Override
@@ -89,7 +90,7 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
     public Expression visitWhile(FeatherweightJavaScriptParser.WhileContext ctx)
     {
         Expression cond = visit(ctx.expr());
-        Expression block = visit(ctx.block(0));
+        Expression block = visit(ctx.block()); // Nick: Removed index
         return new WhileExpr(cond, block);
     }
     
@@ -100,7 +101,7 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
 	
     public Expression visitMulDivMod(FeatherweightJavaScriptParser.MulDivModContext ctx)
     {
-        Token token = ctx.op; //Nick: this doesn't get enum but needs one for BinOpExpr?
+        Op token = findEnum("" + ctx.op.getText()); //Nick: Fixed enum call
         Expression expr1 = visit(ctx.expr(0)); //Nick: Adding visit(), fixing index
         Expression expr2 = visit(ctx.expr(1)); //Nick: Adding visit(), fixing index
         return new BinOpExpr(token, expr1, expr2);
@@ -108,7 +109,7 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
     
     public Expression visitAddSub(FeatherweightJavaScriptParser.AddSubContext ctx) //Nick: renamed method
     {
-        Op token = ctx.op; //Nick: this doesn't get enum but needs one for BinOpExpr?
+        Op token = findEnum("" + ctx.op.getText()); //Nick: Fixed enum call
         Expression expr1 = visit(ctx.expr(0)); //Nick: Adding visit(), fixing index
         Expression expr2 = visit(ctx.expr(1)); //Nick: Adding visit(), fixing index
         return new BinOpExpr(token, expr1, expr2);
@@ -116,13 +117,13 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
 	
 	public Expression visitCompare(FeatherweightJavaScriptParser.CompareContext ctx)
 	{
-		Op token = ctx.op;
+        Op token = findEnum("" + ctx.op.getText()); //Nick: Fixed enum call
         Expression expr1 = visit(ctx.expr(0));
         Expression expr2 = visit(ctx.expr(1));
-		return new BinOpExpr(op, expr1, expr2);
+		return new BinOpExpr(token, expr1, expr2);
 	}
     
-    public Expression visitFuncDecl(FeatherweightJavaScriptParser.FuncDecl ctx) //Nick: renamed method
+    public Expression visitFuncDecl(FeatherweightJavaScriptParser.FuncDeclContext ctx) //Nick: renamed method
     {
         List<String> params = ctx.ID();
         Expression body = visit(ctx.body()); //Nick: Adding visit()
@@ -131,27 +132,43 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
     
     public Expression visitFuncAppl(FeatherweightJavaScriptParser.FuncApplContext ctx) //Nick: renamed method
     {
-        Expression expr = visit(ctx.expr());
 		List<Expression> args = new ArrayList<>();
 		for (ExprContext ec : ctx.args().expr())
 			args.add(visit(ec));
-		return new FunctionAppExpr(expr, args);
+		return new FunctionAppExpr(visit(ctx.expr()), args);
     }
     
     public Expression visitVarDecl(FeatherweightJavaScriptParser.VarDeclContext ctx) //Nick: renamed method
     {
-        String name = ctx.VAR();
-        Expression expr = visit(ctx.expr()); //Nick: Adding visit()
-        return new VarDeclExpr(name, expr);
+        String name = "" + ctx.ID().getText();
+        Expression val = visit(ctx.expr()); //Nick: Adding visit()
+        return new VarDeclExpr(name, val);
     }
 	
 	public Expression visitVarRef(FeatherweightJavaScriptParser.VarRefContext ctx) {
-		return new VarExpr(ctx.ID());
+		return new VarExpr("" + ctx.ID().getText());
 	}
 	
 	public Expression visitAssign(FeatherweightJavaScriptParser.AssignContext ctx) {
 		Expression expr = visit(ctx.expr());
-		String var = ctx.ID();
+		String var = "" + ctx.ID().getText();
 		return new AssignExpr(var, expr);
+	}
+	
+	// Extra method for finding appropriate enum
+	private Op findEnum(String v) {
+		switch(v) {
+			case "+":	return Op.ADD;
+			case "-":	return Op.SUBTRACT;
+			case "*":	return Op.MULTIPLY;
+			case "/":	return Op.DIVIDE;
+			case "%":	return Op.MOD;
+			case ">":	return Op.GT;
+			case ">=":	return Op.GE;
+			case "<":	return Op.LT;
+			case "<=":	return Op.LE;
+			case "==":	return Op.EQ;
+			default:	return null;
+		}
 	}
 }
