@@ -125,8 +125,10 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
     
     public Expression visitFuncDecl(FeatherweightJavaScriptParser.FuncDeclContext ctx) //Nick: renamed method
     {
-        List<String> params = ctx.ID();
-        Expression body = visit(ctx.body()); //Nick: Adding visit()
+        List<String> params;
+        for(int i = 0;i < ctx.ID().size(); i++)
+            params.add(ctx.ID().get(i).getText());
+        Expression body = visit(ctx.block()); //Nick: Adding visit()
         return new FunctionDeclExpr(params, body);
     }
     
