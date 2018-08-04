@@ -135,7 +135,7 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
     public Expression visitFuncAppl(FeatherweightJavaScriptParser.FuncApplContext ctx) //Nick: renamed method
     {
 		List<Expression> args = new ArrayList<>();
-		for (ExprContext ec : ctx.args().expr())
+		for (ExprContext ec : ctx.expr())
 			args.add(visit(ec));
 		return new FunctionAppExpr(visit(ctx.expr()), args);
     }
