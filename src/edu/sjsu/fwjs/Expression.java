@@ -210,8 +210,8 @@ class FunctionAppExpr implements Expression {
     public Value evaluate(Environment env) {
         List<Value> argVals = new ArrayList<>();
         ClosureVal closure = (ClosureVal) f.evaluate(env);
-		for (Expression e : args)
-			argVals.add(e.evaluate(env));
+		for (Expression expr : args)
+			argVals.add(expr.evaluate(env));
         return closure.apply(argVals);
     }
 }
