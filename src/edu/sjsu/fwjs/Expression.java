@@ -107,9 +107,10 @@ class IfExpr implements Expression {
        boolean c = ((BoolVal)cond.evaluate(env)).toBoolean();
        if (c) {
     	   return thn.evaluate(env);
-       } else {
+       } else if (els != null) { //No else block
     	   return els.evaluate(env);
        }
+	   return new NullVal(); //Return
     }
 }
 
@@ -200,17 +201,17 @@ class FunctionDeclExpr implements Expression {
  * Function application.
  */
 class FunctionAppExpr implements Expression {
-    private Expression f;
+    private Expression e;
     private List<Expression> args;
-    public FunctionAppExpr(Expression f, List<Expression> args) {
-        this.f = f;
+    public FunctionAppExpr(Expression e, List<Expression> args) {
+        this.e = e;
         this.args = args;
     }
     public Value evaluate(Environment env) {
+        List<Value> argVals = new ArrayList<>();
         ClosureVal closure = (ClosureVal) f.evaluate(env);
-        ArrayList<Value> argVals = new ArrayList<Value>();
-        for(int i = 0; i < args.size(); i++)
-            argVals.add(args.get(i).evaluate(env));
+		for (Expression e : args)
+			argVals.add(e.evaluate(env));
         return closure.apply(argVals);
     }
 }
