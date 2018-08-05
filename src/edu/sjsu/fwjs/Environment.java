@@ -30,7 +30,7 @@ public class Environment {
     	Environment current = this;
         Value val = current.env.get(varName);
         
-        //Nick: multiple outer environments!!  Search them all, like peeling an onion!
+        //Nick: multiple outer environments!!  Search them all
         while (current.env.get(varName) == null && current.outerEnv != null) {
         	current = current.outerEnv;
         	val = current.env.get(varName);
@@ -48,6 +48,7 @@ public class Environment {
      * or any of the function's outer scopes, the var is stored in the global scope.
      */
     public void updateVar(String key, Value v) {
+		/*
         Value oldVal = resolveVar(key);
         Environment next = outerEnv;
         if(oldVal == null)
@@ -57,7 +58,7 @@ public class Environment {
             while(next != null)
                 next = next.outerEnv;
             env.put(key, v);
-            */
+            */ /*
             
             while(next.outerEnv != null)
                 next = next.outerEnv;
@@ -76,7 +77,12 @@ public class Environment {
             }
             else
                 env.put(key,  v);
-        } 
+        }  */
+		//try recursive solution
+		if (outerEnv == null || env.containsKey(key) //in global or current
+			env.put(key, v);
+		else
+			outerEnv.updateVar(key, v);
     }
 
     /**
