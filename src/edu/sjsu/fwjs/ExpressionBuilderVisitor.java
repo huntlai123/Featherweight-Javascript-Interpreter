@@ -123,23 +123,39 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
 		return new BinOpExpr(token, expr1, expr2);
 	}
     
+	// NEEDS TESTING!!!
     public Expression visitFuncDecl(FeatherweightJavaScriptParser.FuncDeclContext ctx) //Nick: renamed method
     {
+		/*
         List<String> params = new ArrayList<String>();
         for(int i = 0;i < ctx.ID().size(); i++)
             params.add(ctx.ID().get(i).getText());
         Expression body = visit(ctx.block()); //Nick: Adding visit()
-        return new FunctionDeclExpr(params, body);
+        return new FunctionDeclExpr(params, body); */
+		
+		List<String> params = new ArrayList<>();
+		for (TerminalNode tn : ctx.params().ID())
+			params.add(String.valueOf(tn));
+		Expression body - visit(ctx.block());
+		return new FunctionDeclExpr(params, body);
     }
     
+	// NEEDS TESTING!!!
     public Expression visitFuncAppl(FeatherweightJavaScriptParser.FuncApplContext ctx) //Nick: renamed method
-    {
+    { /*
 		List<Expression> args = new ArrayList<>();
 		for (ExprContext ec : ctx.expr()) {
 			Expression expr = visit(ec)
 			args.add(expr);
 		}
-		return new FunctionAppExpr(visit(ctx.expr(0)), args);
+		return new FunctionAppExpr(visit(ctx.expr(0)), args); */
+		
+		List<Expression> args = new ArrayList<>();
+		for (ExprContext ec : ctx.expr()) {
+			Expression expr = visit(ec)
+			args.add(expr);
+		}
+		return listToSeqExp(args);
     }
     
     public Expression visitVarDecl(FeatherweightJavaScriptParser.VarDeclContext ctx) //Nick: renamed method
