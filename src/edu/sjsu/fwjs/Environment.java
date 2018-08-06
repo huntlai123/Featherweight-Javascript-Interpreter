@@ -79,7 +79,7 @@ public class Environment {
                 env.put(key,  v);
         }  */
 		//try recursive solution
-		if (outerEnv == null || env.containsKey(key) //in global or current
+		if (outerEnv == null || env.containsKey(key)) //in global or current
 			env.put(key, v);
 		else
 			outerEnv.updateVar(key, v);

@@ -136,7 +136,7 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
 		List<String> params = new ArrayList<>();
 		for (TerminalNode tn : ctx.params().ID())
 			params.add(String.valueOf(tn));
-		Expression body - visit(ctx.block());
+		Expression body = visit(ctx.block());
 		return new FunctionDeclExpr(params, body);
     }
     
@@ -152,7 +152,7 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
 		
 		List<Expression> args = new ArrayList<>();
 		for (ExprContext ec : ctx.expr()) {
-			Expression expr = visit(ec)
+			Expression expr = visit(ec);
 			args.add(expr);
 		}
 		return listToSeqExp(args);
