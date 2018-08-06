@@ -129,7 +129,10 @@ public class ExpressionBuilderVisitor extends FeatherweightJavaScriptBaseVisitor
 		
         List<String> params = new ArrayList<String>();
         for(int i = 0;i < ctx.ID().size(); i++)
+        {
+            //System.out.println(ctx.ID().get(i).getText());
             params.add(ctx.ID().get(i).getText());
+        }
         Expression body = visit(ctx.block()); //Nick: Adding visit()
         return new FunctionDeclExpr(params, body); 
 		/*

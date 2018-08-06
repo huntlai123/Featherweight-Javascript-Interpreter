@@ -91,6 +91,9 @@ public class Environment {
      * a RuntimeException is thrown.
      */
     public void createVar(String key, Value v) {
+        //System.out.println(key);
+        //System.out.println(v.toString());
+        //System.out.println(env);
         if(!env.containsKey(key))
             env.put(key, v);
         else
