@@ -1,0 +1,285 @@
+Last login: Fri Aug  3 23:54:39 on ttys000
+Hunters-MacBook-Air-2:~ HunterLai$ cd Documents
+Hunters-MacBook-Air-2:Documents HunterLai$ cd workspace
+Hunters-MacBook-Air-2:workspace HunterLai$ cd FeatherweightJavascript
+Hunters-MacBook-Air-2:FeatherweightJavascript HunterLai$ git pull
+Already up to date.
+Hunters-MacBook-Air-2:FeatherweightJavascript HunterLai$ make run
+echo "Running fwjsScripts/closure.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/closure.fwjs;  echo "Running fwjsScripts/examples.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/examples.fwjs;  echo "Running fwjsScripts/functions.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/functions.fwjs;  echo "Running fwjsScripts/operators.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/operators.fwjs;  echo "Running fwjsScripts/test.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/test.fwjs;  echo "Running fwjsScripts/controlStructs.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/controlStructs.fwjs;  echo "Running fwjsScripts/factorial.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/factorial.fwjs;  echo "Running fwjsScripts/lists.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/lists.fwjs;  echo "Running fwjsScripts/scoping.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/scoping.fwjs;  echo "Running fwjsScripts/while.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/while.fwjs;
+Running fwjsScripts/closure.fwjs
+Exception in thread "main" java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:653)
+	at java.util.ArrayList.get(ArrayList.java:429)
+	at edu.sjsu.fwjs.ClosureVal.apply(Value.java:96)
+	at edu.sjsu.fwjs.FunctionAppExpr.evaluate(Expression.java:214)
+	at edu.sjsu.fwjs.VarDeclExpr.evaluate(Expression.java:161)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:146)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.Interpreter.main(Interpreter.java:28)
+Running fwjsScripts/examples.fwjs
+7
+true
+Running fwjsScripts/functions.fwjs
+Exception in thread "main" java.lang.IndexOutOfBoundsException: Index: 1, Size: 1
+	at java.util.ArrayList.rangeCheck(ArrayList.java:653)
+	at java.util.ArrayList.get(ArrayList.java:429)
+	at edu.sjsu.fwjs.ClosureVal.apply(Value.java:96)
+	at edu.sjsu.fwjs.FunctionAppExpr.evaluate(Expression.java:214)
+	at edu.sjsu.fwjs.PrintExpr.evaluate(Expression.java:54)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:146)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.Interpreter.main(Interpreter.java:28)
+Running fwjsScripts/operators.fwjs
+14
+14
+20
+Running fwjsScripts/test.fwjs
+Exception in thread "main" java.lang.IndexOutOfBoundsException: Index: 3, Size: 3
+	at java.util.ArrayList.rangeCheck(ArrayList.java:653)
+	at java.util.ArrayList.get(ArrayList.java:429)
+	at edu.sjsu.fwjs.ClosureVal.apply(Value.java:96)
+	at edu.sjsu.fwjs.FunctionAppExpr.evaluate(Expression.java:214)
+	at edu.sjsu.fwjs.VarDeclExpr.evaluate(Expression.java:161)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:146)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.Interpreter.main(Interpreter.java:28)
+Running fwjsScripts/controlStructs.fwjs
+2
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+1
+Exception in thread "main" java.lang.NullPointerException
+	at edu.sjsu.fwjs.IfExpr.evaluate(Expression.java:111)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:146)
+	at edu.sjsu.fwjs.Interpreter.main(Interpreter.java:28)
+Running fwjsScripts/factorial.fwjs
+Exception in thread "main" java.lang.IndexOutOfBoundsException: Index: 1, Size: 1
+	at java.util.ArrayList.rangeCheck(ArrayList.java:653)
+	at java.util.ArrayList.get(ArrayList.java:429)
+	at edu.sjsu.fwjs.ClosureVal.apply(Value.java:96)
+	at edu.sjsu.fwjs.FunctionAppExpr.evaluate(Expression.java:214)
+	at edu.sjsu.fwjs.VarDeclExpr.evaluate(Expression.java:161)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:146)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.Interpreter.main(Interpreter.java:28)
+Running fwjsScripts/lists.fwjs
+Exception in thread "main" java.lang.IndexOutOfBoundsException: Index: 2, Size: 2
+	at java.util.ArrayList.rangeCheck(ArrayList.java:653)
+	at java.util.ArrayList.get(ArrayList.java:429)
+	at edu.sjsu.fwjs.ClosureVal.apply(Value.java:96)
+	at edu.sjsu.fwjs.FunctionAppExpr.evaluate(Expression.java:214)
+	at edu.sjsu.fwjs.VarDeclExpr.evaluate(Expression.java:161)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:146)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:145)
+	at edu.sjsu.fwjs.Interpreter.main(Interpreter.java:28)
+Running fwjsScripts/scoping.fwjs
+Exception in thread "main" java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:653)
+	at java.util.ArrayList.get(ArrayList.java:429)
+	at edu.sjsu.fwjs.ClosureVal.apply(Value.java:96)
+	at edu.sjsu.fwjs.FunctionAppExpr.evaluate(Expression.java:214)
+	at edu.sjsu.fwjs.SeqExpr.evaluate(Expression.java:146)
+	at edu.sjsu.fwjs.Interpreter.main(Interpreter.java:28)
+Running fwjsScripts/while.fwjs
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Hunters-MacBook-Air-2:FeatherweightJavascript HunterLai$ 
+Hunters-MacBook-Air-2:FeatherweightJavascript HunterLai$ 
+Hunters-MacBook-Air-2:FeatherweightJavascript HunterLai$ e
+-bash: e: command not found
+Hunters-MacBook-Air-2:FeatherweightJavascript HunterLai$ git pull
+remote: Counting objects: 36, done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 36 (delta 16), reused 31 (delta 11), pack-reused 0
+Unpacking objects: 100% (36/36), done.
+From https://github.com/huntlai123/Featherweight-Javascript-Interpreter
+   aea45f9..01d4d34  master     -> origin/master
+Updating aea45f9..01d4d34
+Fast-forward
+ src/edu/sjsu/fwjs/Environment.java              | 12 ++++++++---
+ src/edu/sjsu/fwjs/Expression.java               | 17 ++++++++-------
+ src/edu/sjsu/fwjs/ExpressionBuilderVisitor.java | 28 ++++++++++++++++++++-----
+ 3 files changed, 41 insertions(+), 16 deletions(-)
+Hunters-MacBook-Air-2:FeatherweightJavascript HunterLai$ make
+mkdir -p generatedSrc/edu/sjsu/fwjs/parser
+java -jar lib/antlr-4.7.1-complete.jar -no-listener -visitor FeatherweightJavaScript.g4 -o generatedSrc/edu/sjsu/fwjs/parser
+mkdir -p build/edu/sjsu/fwjs
+javac -cp lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:lib/antlr-4.7.1-complete.jar -d build src/edu/sjsu/fwjs/*.java testSrc/edu/sjsu/fwjs/*.java generatedSrc/edu/sjsu/fwjs/parser/*.java
+src/edu/sjsu/fwjs/Environment.java:82: error: ')' expected
+		if (outerEnv == null || env.containsKey(key) //in global or current
+		                                            ^
+src/edu/sjsu/fwjs/ExpressionBuilderVisitor.java:139: error: ';' expected
+		Expression body - visit(ctx.block());
+		               ^
+src/edu/sjsu/fwjs/ExpressionBuilderVisitor.java:155: error: ';' expected
+			Expression expr = visit(ec)
+			                           ^
+3 errors
+make: *** [all] Error 1
+Hunters-MacBook-Air-2:FeatherweightJavascript HunterLai$ make
+mkdir -p generatedSrc/edu/sjsu/fwjs/parser
+java -jar lib/antlr-4.7.1-complete.jar -no-listener -visitor FeatherweightJavaScript.g4 -o generatedSrc/edu/sjsu/fwjs/parser
+mkdir -p build/edu/sjsu/fwjs
+javac -cp lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:lib/antlr-4.7.1-complete.jar -d build src/edu/sjsu/fwjs/*.java testSrc/edu/sjsu/fwjs/*.java generatedSrc/edu/sjsu/fwjs/parser/*.java
+src/edu/sjsu/fwjs/ExpressionBuilderVisitor.java:137: error: cannot find symbol
+		for (TerminalNode tn : ctx.params().ID())
+		                          ^
+  symbol:   method params()
+  location: variable ctx of type FuncDeclContext
+src/edu/sjsu/fwjs/ExpressionBuilderVisitor.java:137: error: cannot find symbol
+		for (TerminalNode tn : ctx.params().ID())
+		     ^
+  symbol:   class TerminalNode
+  location: class ExpressionBuilderVisitor
+Note: src/edu/sjsu/fwjs/Interpreter.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+2 errors
+make: *** [all] Error 1
+Hunters-MacBook-Air-2:FeatherweightJavascript HunterLai$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   bin/edu/sjsu/fwjs/AssignExpr.class
+	modified:   bin/edu/sjsu/fwjs/Environment.class
+	modified:   bin/edu/sjsu/fwjs/ExpressionBuilderVisitor.class
+	modified:   bin/edu/sjsu/fwjs/FunctionAppExpr.class
+	modified:   bin/edu/sjsu/fwjs/FunctionDeclExpr.class
+	modified:   bin/edu/sjsu/fwjs/IfExpr.class
+	modified:   bin/edu/sjsu/fwjs/SeqExpr.class
+	modified:   bin/edu/sjsu/fwjs/VarDeclExpr.class
+	modified:   bin/edu/sjsu/fwjs/WhileExpr.class
+	modified:   build/edu/sjsu/fwjs/AssignExpr.class
+	modified:   build/edu/sjsu/fwjs/Environment.class
+	modified:   build/edu/sjsu/fwjs/FunctionAppExpr.class
+	modified:   build/edu/sjsu/fwjs/FunctionDeclExpr.class
+	modified:   build/edu/sjsu/fwjs/IfExpr.class
+	modified:   build/edu/sjsu/fwjs/SeqExpr.class
+	modified:   build/edu/sjsu/fwjs/VarDeclExpr.class
+	modified:   build/edu/sjsu/fwjs/WhileExpr.class
+	modified:   src/edu/sjsu/fwjs/Environment.java
+	modified:   src/edu/sjsu/fwjs/ExpressionBuilderVisitor.java
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Hunters-MacBook-Air-2:FeatherweightJavascript HunterLai$ git add .
+Hunters-MacBook-Air-2:FeatherweightJavascript HunterLai$ git commit -m 'fix parts'
+[master e1e9936] fix parts
+ 19 files changed, 3 insertions(+), 3 deletions(-)
+ rewrite bin/edu/sjsu/fwjs/FunctionAppExpr.class (64%)
+ rewrite build/edu/sjsu/fwjs/FunctionAppExpr.class (75%)
+ rewrite build/edu/sjsu/fwjs/IfExpr.class (71%)
+Hunters-MacBook-Air-2:FeatherweightJavascript HunterLai$ git push -u origin master
+Counting objects: 33, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (24/24), done.
+Writing objects: 100% (33/33), 6.99 KiB | 1.16 MiB/s, done.
+Total 33 (delta 16), reused 0 (delta 0)
+remote: Resolving deltas: 100% (16/16), completed with 12 local objects.
+To https://github.com/huntlai123/Featherweight-Javascript-Interpreter.git
+   01d4d34..e1e9936  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+Hunters-MacBook-Air-2:FeatherweightJavascript HunterLai$ git pull
+remote: Counting objects: 7, done.
+remote: Compressing objects: 100% (1/1), done.
+remote: Total 7 (delta 3), reused 7 (delta 3), pack-reused 0
+Unpacking objects: 100% (7/7), done.
+From https://github.com/huntlai123/Featherweight-Javascript-Interpreter
+   e1e9936..ae5b7a0  master     -> origin/master
+Updating e1e9936..ae5b7a0
+Fast-forward
+ src/edu/sjsu/fwjs/ExpressionBuilderVisitor.java | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+Hunters-MacBook-Air-2:FeatherweightJavascript HunterLai$ make
+mkdir -p generatedSrc/edu/sjsu/fwjs/parser
+java -jar lib/antlr-4.7.1-complete.jar -no-listener -visitor FeatherweightJavaScript.g4 -o generatedSrc/edu/sjsu/fwjs/parser
+mkdir -p build/edu/sjsu/fwjs
+javac -cp lib/junit-4.12.jar:lib/hamcrest-core-1.3.jar:lib/antlr-4.7.1-complete.jar -d build src/edu/sjsu/fwjs/*.java testSrc/edu/sjsu/fwjs/*.java generatedSrc/edu/sjsu/fwjs/parser/*.java
+Note: src/edu/sjsu/fwjs/Interpreter.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Hunters-MacBook-Air-2:FeatherweightJavascript HunterLai$ make run
+echo "Running fwjsScripts/closure.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/closure.fwjs;  echo "Running fwjsScripts/examples.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/examples.fwjs;  echo "Running fwjsScripts/functions.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/functions.fwjs;  echo "Running fwjsScripts/operators.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/operators.fwjs;  echo "Running fwjsScripts/test.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/test.fwjs;  echo "Running fwjsScripts/controlStructs.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/controlStructs.fwjs;  echo "Running fwjsScripts/factorial.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/factorial.fwjs;  echo "Running fwjsScripts/lists.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/lists.fwjs;  echo "Running fwjsScripts/scoping.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/scoping.fwjs;  echo "Running fwjsScripts/while.fwjs"; java -cp build:lib/antlr-4.7.1-complete.jar edu.sjsu.fwjs.Interpreter fwjsScripts/while.fwjs;
+Running fwjsScripts/closure.fwjs
+function() {...};
+function() {...};
+function() {...};
+function() {...};
+Running fwjsScripts/examples.fwjs
+7
+true
+Running fwjsScripts/functions.fwjs
+function() {...};
+function() {...};
+2
+Running fwjsScripts/operators.fwjs
+14
+14
+20
+Running fwjsScripts/test.fwjs
+4
+null
+Running fwjsScripts/controlStructs.fwjs
+2
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+1
+Running fwjsScripts/factorial.fwjs
+8
+Running fwjsScripts/lists.fwjs
+2
+2
+null
+Running fwjsScripts/scoping.fwjs
+Running fwjsScripts/while.fwjs
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Hunters-MacBook-Air-2:FeatherweightJavascript HunterLai$ 
